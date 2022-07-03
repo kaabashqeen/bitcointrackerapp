@@ -27,8 +27,13 @@ class ViewController: UIViewController {
         currencyPicker.dataSource = self
         currencyPicker.delegate = self
         coinManager.delegate = self
+        updatePrice()
+        currencyPicker.isHidden = true
     }
     
+    func updatePrice() {
+        coinManager.getCoinPrice(of: "BTC", for: "USD")
+    }
 }
 
 //MARK: - PickerViewDelegate
@@ -40,7 +45,7 @@ extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let selectedCurrency = coinManager.currencyArray[row]
         currencyLabel.text = selectedCurrency
-        coinManager.getCoinPrice(for: selectedCurrency)
+        coinManager.getCoinPrice(of: "BTC",for: selectedCurrency)
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

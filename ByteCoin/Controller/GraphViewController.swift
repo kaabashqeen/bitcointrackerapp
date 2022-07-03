@@ -16,9 +16,9 @@ class GraphViewController: UIViewController {
 //    var chart: LightweightCharts!
     var coinTSManager = CoinTSManager()
 //    var series: BarSeries!
-    var series: LineSeries!
+//    var series: LineSeries!
     let isoFormatter = ISO8601DateFormatter()
-//    var series: CandlestickSeries!
+    var series: CandlestickSeries!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -68,7 +68,7 @@ class GraphViewController: UIViewController {
         coinTSManager.delegate = self
 //        self.lightweightChart.sizeToFit()
 //        self.lightweightChart.timeScale().resetTimeScale()
-        self.lightweightChart.applyOptions(options: ChartOptions(width: nil, height: nil, watermark: nil, layout: nil, leftPriceScale: VisiblePriceScaleOptions(autoScale: true, mode: nil, invertScale: nil, alignLabels: nil, scaleMargins: nil, borderVisible: true, borderColor: nil, entireTextOnly: nil, visible: true, drawTicks: true), rightPriceScale: VisiblePriceScaleOptions(autoScale: true, mode: nil, invertScale: nil, alignLabels: nil, scaleMargins: nil, borderVisible: true, borderColor: nil, entireTextOnly: nil, visible: true, drawTicks: true), overlayPriceScales: nil, timeScale: TimeScaleOptions(rightOffset: nil, barSpacing: nil, minBarSpacing: nil, fixLeftEdge: nil, fixRightEdge: nil, lockVisibleTimeRangeOnResize: nil, rightBarStaysOnScroll: nil, borderVisible: true, borderColor: nil, visible: true, timeVisible: true, secondsVisible: true, shiftVisibleRangeOnNewBar: nil, tickMarkFormatter: nil), crosshair: nil, grid: nil, localization: nil, handleScroll: nil, handleScale: nil, kineticScroll: nil, trackingMode: nil))
+//        self.lightweightChart.applyOptions(options: ChartOptions(width: nil, height: nil, watermark: nil, layout: nil, leftPriceScale: VisiblePriceScaleOptions(autoScale: true, mode: nil, invertScale: nil, alignLabels: nil, scaleMargins: nil, borderVisible: true, borderColor: nil, entireTextOnly: nil, visible: true, drawTicks: true), rightPriceScale: VisiblePriceScaleOptions(autoScale: true, mode: nil, invertScale: nil, alignLabels: nil, scaleMargins: nil, borderVisible: true, borderColor: nil, entireTextOnly: nil, visible: true, drawTicks: true), overlayPriceScales: nil, timeScale: TimeScaleOptions(rightOffset: nil, barSpacing: nil, minBarSpacing: nil, fixLeftEdge: nil, fixRightEdge: nil, lockVisibleTimeRangeOnResize: nil, rightBarStaysOnScroll: nil, borderVisible: true, borderColor: nil, visible: true, timeVisible: true, secondsVisible: true, shiftVisibleRangeOnNewBar: nil, tickMarkFormatter: nil), crosshair: nil, grid: nil, localization: nil, handleScroll: nil, handleScale: nil, kineticScroll: nil, trackingMode: nil))
         
     }
     
@@ -81,11 +81,16 @@ class GraphViewController: UIViewController {
 extension GraphViewController: CoinTSManagerDelegate {
     func didUpdateCoinTS(_ coinTSManager: CoinTSManager, coinTSModels: [CoinTSModel]) {
         DispatchQueue.main.async {
-            self.series = self.lightweightChart.addLineSeries(options: nil)
+//            self.series = self.lightweightChart.addLineSeries(options: nil)
+            
 //            self.chart.frame = self.view.bounds
             
-            var data: [LineData] = []
-//            var data: [CandlestickData] = []
+//            var data: [LineData] = []
+//            self.series = self.lightweightChart.addBarSeries(options: nil)
+            self.series = self.lightweightChart.addCandlestickSeries(options: nil)
+            var data: [CandlestickData] = []
+//            var data: [BarData] = []
+            
             var count = 0
             for coinTS in coinTSModels {
                 let time = coinTS.time
@@ -95,10 +100,10 @@ extension GraphViewController: CoinTSManagerDelegate {
                 
 //                data.append(BarData(time: .utc(timestamp: date), open: coinTS.openP, high: coinTS.high, low: coinTS.low, close: coinTS.close))
 //                print(date, coinTS.openP, coinTS.high, coinTS.low, coinTS.close)
-//                data.append(CandlestickData(time: .utc(timestamp: date), open: coinTS.openP, high: coinTS.high, low: coinTS.low, close: coinTS.close, color: ChartColor("blue"), borderColor: ChartColor("red"), wickColor: ChartColor("green")))
+                data.append(CandlestickData(time: .utc(timestamp: date), open: coinTS.openP, high: coinTS.high, low: coinTS.low, close: coinTS.close))
 //                print(data[count].time, coinTS.close)
                 count+=1
-                data.append(LineData(time: .utc(timestamp: date), value: coinTS.close))
+//                data.append(LineData(time: .utc(timestamp: date), value: coinTS.close))
 //                print(date, coinTS.openP, coinTS.high, coinTS.low, coinTS.close)
 //                if count >= 5 {
 //                    break
