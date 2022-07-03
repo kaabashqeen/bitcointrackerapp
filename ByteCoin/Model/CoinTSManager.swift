@@ -18,9 +18,9 @@ protocol CoinTSManagerDelegate {
 struct CoinTSManager {
     
     let baseURL = "https://rest.coinapi.io/v1/ohlcv/COINBASE_SPOT_BTC_USD/latest"
-//    let apiKey = "BF4EBD78-B2EA-4A60-965D-B0C84B9EE11E"
+    let apiKey = "BF4EBD78-B2EA-4A60-965D-B0C84B9EE11E"
 //    let apiKey = "823D7F10-F4E0-48E0-BC0A-AA18DC2AFE4C"
-    let apiKey = "A473FBCE-D405-4C9C-A229-A4DC92A13C8F"
+//    let apiKey = "A473FBCE-D405-4C9C-A229-A4DC92A13C8F"
     let period_id = "1MIN"
     let include_empty_items = "false"
     
@@ -71,7 +71,7 @@ struct CoinTSManager {
             let decodedData = try decoder.decode([CoinTSData].self, from: coinTSData)
             var coinTSModels: [CoinTSModel] = []
             for timePeriod in decodedData {
-                var time = timePeriod.time_close
+                var time = timePeriod.time_period_end
                 var open = timePeriod.price_open
                 var high = timePeriod.price_high
                 var low = timePeriod.price_low

@@ -124,14 +124,29 @@
                     <view key="view" contentMode="scaleToFill" id="eyv-ZV-4O9">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nZb-Aq-GIG" customClass="LightweightCharts" customModule="LightweightCharts">
+                                <rect key="frame" x="10" y="94" width="408" height="678"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="1b1-By-2Xp"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="nZb-Aq-GIG" firstAttribute="leading" secondItem="1b1-By-2Xp" secondAttribute="leading" constant="10" id="BnK-PM-qK6"/>
+                            <constraint firstItem="1b1-By-2Xp" firstAttribute="bottom" secondItem="nZb-Aq-GIG" secondAttribute="bottom" constant="100" id="F5L-7s-VLt"/>
+                            <constraint firstItem="1b1-By-2Xp" firstAttribute="trailing" secondItem="nZb-Aq-GIG" secondAttribute="trailing" constant="10" id="KfR-RM-Xtu"/>
+                            <constraint firstItem="nZb-Aq-GIG" firstAttribute="top" secondItem="1b1-By-2Xp" secondAttribute="top" constant="50" id="vyM-32-RkN"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1rb-b4-lmQ"/>
+                    <connections>
+                        <outlet property="lightweightChart" destination="nZb-Aq-GIG" id="e5d-y0-gGz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YZK-Vt-9Zd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="884" y="142"/>
+            <point key="canvasLocation" x="883.17757009345792" y="141.90064794816416"/>
         </scene>
     </scenes>
     <resources>
